@@ -1,12 +1,15 @@
 package com.filrouge.poe.lyon.JPAPOE.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +34,17 @@ public class Vehicule {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_creation", nullable = false)
 	private Date date_creation;
+	
+	@OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
+	private List<Devis> listeDevis;
+
+	public List<Devis> getListeDevis() {
+		return listeDevis;
+	}
+
+	public void setListeDevis(List<Devis> listeDevis) {
+		this.listeDevis = listeDevis;
+	}
 
 	public Integer getId() {
 		return id;

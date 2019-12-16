@@ -39,6 +39,7 @@ private IVehiculeDao vehiculedao;
 	@Override
 	public void supprimerVehicule(Vehicule v) {
 		// TODO Auto-generated method stub
+		this.vehiculedao.supprimerVehicule(v);
 
 	}
 

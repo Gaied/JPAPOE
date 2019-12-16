@@ -30,12 +30,24 @@ public class ClientDao extends EntityDao<Client> implements IClientDao {
 
 	public void supprimerClient(Client c) {
 		// TODO Auto-generated method stub
-        this.supprimerClient(c);
+        this.remove(Client.class, c);
 	}
 
 	public Client findClient(Integer i) {
 		// TODO Auto-generated method stub
 		return this.find(Client.class, i);
+	}
+
+	@Override
+	public List<Client> requetenamed(String requete) {
+		// TODO Auto-generated method stub
+		return this.requeteNamed(Client.class,requete);
+	}
+
+	@Override
+	public List<Client> requetenamed(String requete, String... tab) {
+		// TODO Auto-generated method stub
+		return this.requeteNamed(Client.class,requete, tab);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.filrouge.poe.lyon.JPAPOE.dao.impl;
 
 import java.util.List;
+
 import com.filrouge.poe.lyon.JPAPOE.dao.IVehiculeDao;
 import com.filrouge.poe.lyon.JPAPOE.model.Vehicule;
 
@@ -26,19 +27,21 @@ public class VehiculeDao extends EntityDao<Vehicule> implements IVehiculeDao {
 	@Override
 	public void modifierVehicule(Vehicule v) {
 		// TODO Auto-generated method stub
+		this.remove(Vehicule.class, v);
 
 	}
 
 	@Override
 	public void supprimerVehicule(Vehicule v) {
 		// TODO Auto-generated method stub
+		this.remove(Vehicule.class, v);
 
 	}
 
 	@Override
 	public Vehicule findVehicule(Integer i) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.find(Vehicule.class, i);
 	}
 
 }

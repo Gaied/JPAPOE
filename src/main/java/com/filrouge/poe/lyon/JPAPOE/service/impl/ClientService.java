@@ -6,6 +6,7 @@ import com.filrouge.poe.lyon.JPAPOE.dao.IClientDao;
 import com.filrouge.poe.lyon.JPAPOE.dao.impl.ClientDao;
 import com.filrouge.poe.lyon.JPAPOE.dao.impl.Dao;
 import com.filrouge.poe.lyon.JPAPOE.model.Client;
+import com.filrouge.poe.lyon.JPAPOE.model.Devis;
 import com.filrouge.poe.lyon.JPAPOE.service.IClientService;
 
 public class ClientService implements IClientService {
@@ -33,12 +34,30 @@ public class ClientService implements IClientService {
 
 	public void supprimerClient(Client c) {
 		// TODO Auto-generated method stub
-		this.supprimerClient(c);
+		this.clientdao.supprimerClient(c);
 	}
 
 	public Client findClient(Integer i) {
 		// TODO Auto-generated method stub
 		return this.clientdao.findClient(i);
+	}
+
+	@Override
+	public List<Client> requetenamed(String requete) {
+		// TODO Auto-generated method stub
+		return this.clientdao.requetenamed(requete);
+	}
+
+	@Override
+	public List<Client> requetenamed(String requete, String... tab) {
+		// TODO Auto-generated method stub
+		return this.clientdao.requetenamed(requete, tab);
+	}
+
+	@Override
+	public List<Devis> FindDevisByClient(Integer i) {
+		// TODO Auto-generated method stub
+		return this.clientdao.findClient(i).getListeDevis();
 	}
 
 }

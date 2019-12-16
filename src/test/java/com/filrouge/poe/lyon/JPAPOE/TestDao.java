@@ -3,15 +3,20 @@ package com.filrouge.poe.lyon.JPAPOE;
 import java.util.Date;
 
 import org.junit.AfterClass;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import com.filrouge.poe.lyon.JPAPOE.dao.impl.Dao;
-import com.filrouge.poe.lyon.JPAPOE.model.Vehicule;
-//import com.filrouge.poe.lyon.JPAPOE.model.Client;
+import com.filrouge.poe.lyon.JPAPOE.model.Client;
+import com.filrouge.poe.lyon.JPAPOE.model.Devis;
+import com.filrouge.poe.lyon.JPAPOE.model.User;
 import com.filrouge.poe.lyon.JPAPOE.service.IClientService;
+import com.filrouge.poe.lyon.JPAPOE.service.IDeviseService;
+import com.filrouge.poe.lyon.JPAPOE.service.IUserService;
 import com.filrouge.poe.lyon.JPAPOE.service.IVehciculeService;
 import com.filrouge.poe.lyon.JPAPOE.service.impl.ClientService;
+import com.filrouge.poe.lyon.JPAPOE.service.impl.DeviseService;
+import com.filrouge.poe.lyon.JPAPOE.service.impl.UserService;
 import com.filrouge.poe.lyon.JPAPOE.service.impl.VehiculeService;
 
 public class TestDao {
@@ -29,7 +34,7 @@ public class TestDao {
 	}
 
 //	@Test
-//	public void testfindClient() {
+//public void testfindClient() {
 //		IClientService clientservice = new ClientService(dao);
 //		System.out.println(clientservice.findClient(1));
 //	}
@@ -39,12 +44,12 @@ public class TestDao {
 //		IClientService clientservice = new ClientService(dao);
 //		System.out.println(clientservice.listClients());
 //	}
-	
+
 //	@Test
 //	public void addClient() {
 //		IClientService clientservice = new ClientService(dao);
 //	    Client c = new Client();
-//	    c.setName("Bassel");
+//	    c.setName("Cristiano");
 //	    c.setFirstname("Gaied");
 //	    c.setAdresse("Rue Rene");
 //	    c.setVille("Lyon");
@@ -64,31 +69,107 @@ public class TestDao {
 //		
 //		clientservice.supprimerClient(c);
 //	}
-	
+
 //	@Test
 //	public void testfindAllVehicule() {
 //		IVehciculeService vehciculeservice = new VehiculeService(dao);
 //		System.out.println(vehciculeservice.listVehicules());
 //	}
+
+//	@Test
+//	public void testfindVehicule() {
+//		IVehciculeService vehciculeservice = new VehiculeService(dao);
+//		System.out.println(vehciculeservice.findVehicule(2));
+//	}
+//	
+//	@Test
+//	public void addVehciule() {
+//		IVehciculeService vehciculeservice = new VehiculeService(dao);
+//		Vehicule v = new Vehicule(); 
+//		
+//		v.setModele("Ferrari");
+//		v.setPrixHT(70000);
+//		v.setQuantite(10);
+//		v.setDate_creation(new Date());
+//		
+//		vehciculeservice.ajouterVehicule(v);
+//		System.out.println(v.toString());
+//	}
+
+//	@Test
+//	public void testNamedClient() {
+//		IClientService clientservice = new ClientService(dao);
+//		clientservice.requetenamed("Client.findAll").stream().forEach(System.out::println);
+//		
+//    }
+//	
+//	@Test
+//	public void testNamedParamClient() {
+//		IClientService clientservice = new ClientService(dao);
+//		clientservice.requetenamed("Client.findByName","C%").stream().forEach(System.out::println);
+//		
+//    }
+
+//	@Test
+//	public void TestaddUser() {
+//		IUserService userservice = new UserService(dao);
+//		User us = new User();
+//		us.setFirstName("Alzaro");
+//		us.setLastName("Bassel");
+//		us.setLogin("bassel");
+//		us.setPassword("123456789");
+//
+//		userservice.ajouterUser(us);
+//		System.out.println(us.toString());
+//
+//		System.out.println(userservice.listUsers());
+//	}
+//
+//	@Test
+//	public void testfindAllusers() {
+//		IUserService userservice = new UserService(dao);
+//		System.out.println(userservice.listUsers());
+//	}
 	
+//	@Test
+//	public void TestaddDevis() {
+//		IDeviseService devisservice = new DeviseService(dao);
+//		IUserService userservice = new UserService(dao);
+//		IClientService clientservice = new ClientService(dao);
+//		IVehciculeService vehciculeservice = new VehiculeService(dao);
+//		
+//		Devis ds = new Devis();
+//		
+//		ds.setClient(clientservice.findClient(1));
+//		ds.setDatecreation(new Date());
+//		ds.setEtat(true);
+//		ds.setVehicule(vehciculeservice.findVehicule(1));
+//		ds.setUser(userservice.findUser(1));
+//
+//		devisservice.ajouterDevis(ds);
+//		System.out.println(ds.toString());
+//
+//	}
+
 	@Test
-	public void testfindVehicule() {
-		IVehciculeService vehciculeservice = new VehiculeService(dao);
-		System.out.println(vehciculeservice.findVehicule(2));
+	public void testfindAlldevis() {
+		IDeviseService devisservice = new DeviseService(dao);
+		System.out.println(devisservice.listDevis());
 	}
 	
 	@Test
-	public void addVehciule() {
-		IVehciculeService vehciculeservice = new VehiculeService(dao);
-		Vehicule v = new Vehicule(); 
+	public void testfindDevisbyClient() {
+		IClientService clientservice = new ClientService(dao);
+		Client c  = clientservice.findClient(1);
 		
-		v.setModele("Ferrari");
-		v.setPrixHT(70000);
-		v.setQuantite(10);
-		v.setDate_creation(new Date());
+		clientservice.FindDevisByClient(c.getId()).stream().forEach(d->System.out.println(d.getId()+"---"+d.getDatecreation()));
 		
-		vehciculeservice.ajouterVehicule(v);
-		System.out.println(v.toString());
 	}
 	
+	@Test
+	public void testfindAllusers() {
+		IUserService userservice = new UserService(dao);
+		System.out.println(userservice.listUsers());
+	}
+
 }

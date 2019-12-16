@@ -1,14 +1,28 @@
 package com.filrouge.poe.lyon.JPAPOE.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="client")
+@NamedQueries( value =
+		{
+		@NamedQuery( name ="Client.findAll",
+				query= "SELECT c FROM Client c"),
+		@NamedQuery( name ="Client.findByName",
+		query= "SELECT CLI FROM Client AS CLI WHERE CLI.name like ?1")
+		}
+)
 public class Client {
 
 	@Id
@@ -38,6 +52,17 @@ public class Client {
 	
 	@Column(name= "portable", length= 50 , nullable=false)
 	private String portable;
+	
+	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+	private List<Devis> listeDevis;
+
+	public List<Devis> getListeDevis() {
+		return listeDevis;
+	}
+
+	public void setListeDevis(List<Devis> listeDevis) {
+		this.listeDevis = listeDevis;
+	}
 
 	public Integer getId() {
 		return id;
